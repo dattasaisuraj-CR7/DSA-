@@ -1,0 +1,35 @@
+
+
+public class AppointmentScheduling {
+
+    public static void main(String[] args) {
+
+        int[][] activities = {
+                {1, 2},
+                {3, 4},
+                {0, 6},
+                {5, 7},
+                {8, 9}
+        };
+
+        Arrays.sort(activities, Comparator.comparingInt(a -> a[1]));
+
+        List<String> selected = new ArrayList<>();
+
+        int lastEnd = 0;
+
+        for (int[] activity : activities) {
+
+            int start = activity[0];
+            int end = activity[1];
+
+            if (start >= lastEnd) {
+                selected.add("(" + start + "," + end + ")");
+                lastEnd = end;
+            }
+        }
+
+        System.out.println("Selected Appointments:");
+        System.out.println(selected);
+    }
+}
